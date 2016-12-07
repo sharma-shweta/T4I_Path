@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome">
+    <TextView
+        android:text="Hey (User)!"
+        android:id="@+id/helloUser"
+        style="@style/LargeWhiteCenter"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp" />
+    <TextView
+        android:text="Welcome to Path"
+        android:id="@+id/welcomeToPath"
+        style="@style/MediumWhiteCenter"
+        android:layout_below="@id/helloUser"
+        android:gravity="center"
+        android:layout_marginTop="40dp" />
+    <TextView
+        android:text="Let's revolutionise education one "
+        android:id="@+id/intro1"
+        style="@style/MediumWhiteCenter"
+        android:layout_below="@id/welcomeToPath"
+        android:gravity="center"
+        android:layout_marginTop="30dp" />
+    <TextView
+        android:text="classroom at a time."
+        android:id="@+id/intro2"
+        style="@style/MediumWhiteCenter"
+        android:layout_below="@id/intro1"
+        android:gravity="center"
+        android:layout_marginTop="30dp" />
+    <ImageButton
+        android:id="@+id/getStartedButton"
+        android:src="@drawable/getstarted_button"
+        style="@style/CenterTrnspBg"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp" />
+</RelativeLayout>
