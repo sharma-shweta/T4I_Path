@@ -36,5 +36,6 @@
         android:src="@drawable/getstarted_button"
         style="@style/CenterTrnspBg"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp" />
+        android:layout_marginBottom="100dp"
+        android:onClick="gotoChooseLang"/>
 </RelativeLayout>

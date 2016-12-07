@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/choose_lang">
+    <TextView
+        android:text="Choose your Language"
+        android:id="@+id/selectLang"
+        style="@style/TitleWhiteCenter"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp" />
+    <SearchView
+        android:id="@+id/searchLang"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/selectLang"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true" />
+    <ListView
+        android:id="@android:id/list"
+        android:entries="@array/app_locale"
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:layout_below="@id/searchLang"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:fadingEdge="none"
+        android:divider="#ffffffff"
+        android:dividerHeight="0.5dp" />
+    <ImageButton
+        android:id="@+id/langNext"
+        android:src="@drawable/next_button"
+        style="@style/CenterTrnspBg"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:onClick="gotoGender"/>
+</RelativeLayout>

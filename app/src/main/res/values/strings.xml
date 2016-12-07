@@ -37,4 +37,8 @@
     <string name="ApiKey">AIzaSyBNUiwOjLnILeorZzGbZ-Gy787zCfi0Ef8</string>
     <string name="ApplicationId">1:338211353991:android:1ef65a1e5ea1f998</string>
     <string name="DatabaseUrl">https://c4c-t4i.firebaseio.com</string>
+
+    <!--Shared Preference-->
+    <string name="userIdSharedPref" />
+
 </resources>
