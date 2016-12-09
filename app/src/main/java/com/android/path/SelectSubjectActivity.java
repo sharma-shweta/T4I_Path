@@ -6,21 +6,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-public class ChooseLangActivity extends AppCompatActivity {
+public class SelectSubjectActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_lang);
+        setContentView(R.layout.activity_select_subject);
     }
 
     /** Called when the user clicks the login button */
-    public void gotoGender(View view) {
+    public void gotoClsStud(View view) {
         // Do something in response to button
-        Log.d("ChooseLangActivity", "Starting GenderActivity");
+        Log.d("SelectSubjectActivity", "Starting SelectSubjectActivity");
         // do google authentication
 
-        Intent intent = new Intent(this, GenderActivity.class);
+//        mDatabase.child("shwt-test").child("android-test").setValue("shweta");
+
+        Intent intent = new Intent(this, ClassroomStudentsActivity.class);
         startActivity(intent);
     }
 }

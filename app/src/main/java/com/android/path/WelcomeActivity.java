@@ -20,7 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
         Log.d("Welcome", "Starting Choose Language Activity");
         // do google authentication
 
-        Intent intent = new Intent(this, ChooseLangActivity.class);
+        Intent intent = new Intent(this, AppLanguageActivity.class);
         startActivity(intent);
     }
 }

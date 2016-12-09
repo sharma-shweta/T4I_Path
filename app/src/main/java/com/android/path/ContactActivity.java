@@ -6,29 +6,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-public class GenderActivity extends AppCompatActivity {
-
-    private DatabaseReference mDatabase;
+public class ContactActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        setContentView(R.layout.activity_gender);
+        setContentView(R.layout.activity_contact);
     }
 
     /** Called when the user clicks the login button */
-    public void gotoDOB(View view) {
+    public void gotoSelClass(View view) {
         // Do something in response to button
-        Log.d("GenderActivity", "Starting DOBActivity");
+        Log.d("GenderActivity", "Starting SelectClassroomActivity");
         // do google authentication
 
 //        mDatabase.child("shwt-test").child("android-test").setValue("shweta");
 
-        Intent intent = new Intent(this, DOBActivity.class);
+        Intent intent = new Intent(this, SelectClassroomActivity.class);
         startActivity(intent);
     }
 }
