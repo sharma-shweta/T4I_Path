@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.android.path.models.SetUpFirebaseData;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -27,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString(getString(R.string.userIdSharedPref), "123");
         editor.commit();
 
+        new SetUpFirebaseData().data();
 
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);

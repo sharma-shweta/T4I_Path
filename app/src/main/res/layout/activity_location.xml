@@ -72,25 +72,6 @@
         android:descendantFocusability="blocksDescendants"
         android:clickable="false"
         android:focusable="true" />
-    <AutoCompleteTextView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="258.7dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/school"
-        android:baselineAligned="true"
-        android:gravity="center"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="0.0dp"
-        android:layout_gravity="center"
-        android:measureWithLargestChild="false"
-        android:hint="School"
-        android:textSize="@dimen/abc_text_size_title_material"
-        android:textColor="#ffffffff"
-        android:textColorHint="#92ffffff"
-        android:descendantFocusability="blocksDescendants"
-        android:clickable="false"
-        android:focusable="true" />
     <ImageButton
         android:id="@+id/btnSchool"
         android:layout_width="wrap_content"
@@ -98,6 +79,6 @@
         android:layout_gravity="center"
         android:src="@drawable/tick"
         android:background="@null"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="70dp"
         android:onClick="gotoGender"/>
 </LinearLayout>

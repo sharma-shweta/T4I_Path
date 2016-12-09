@@ -49,7 +49,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp" />
     <ImageButton
-        android:id="@+id/dobNext"
         android:src="@drawable/next_button"
         style="@style/CenterTrnspBg"
         android:layout_alignParentBottom="true"
