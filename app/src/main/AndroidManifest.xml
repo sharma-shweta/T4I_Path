@@ -21,10 +21,12 @@
         <activity android:name=".GenderActivity" />
         <activity android:name=".DOBActivity" />
         <activity android:name=".ContactActivity" />
-        <activity android:name=".LocationActivity" />
+         <activity android:name=".LocationActivity" />
         <activity android:name=".SelectClassroomActivity" />
         <activity android:name=".SelectSubjectActivity" />
-        <activity android:name=".ClassroomStudentsActivity"></activity>
+        <activity android:name=".ClassroomStudentsActivity" />
+        <activity android:name=".SelectSchoolActivity"></activity>
+        <activity android:name=".AddStudentActivity" />
     </application>
 
 </manifest>

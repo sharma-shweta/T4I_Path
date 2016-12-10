@@ -6,28 +6,28 @@ public class Classroom {
 
     public String grade;
     public String section;
-    public AcademicYear ay;
+    public String academicYearId;
     public Shift shift;
     public int hours;
-    public ArrayList<Subject> subjects;
+    public ArrayList<String> subjectIds;
     public ArrayList<SubjTeacher> subjTeachers;
-    public ArrayList<Student> students;
+    public ArrayList<String> studentIds;
 
     public Classroom() {
         // Default constructor required for calls to DataSnapshot.getValue(Classroom.class)
     }
 
-    public Classroom(String grade, String section, AcademicYear ay, Shift shift,
-                     int hours, ArrayList<Subject> subjects, ArrayList<SubjTeacher> subjTeachers,
-                     ArrayList<Student> students) {
+    public Classroom(String grade, String section, String ayId, Shift shift,
+                     int hours, ArrayList<String> subjects, ArrayList<SubjTeacher> subjTeachers,
+                     ArrayList<String> students) {
         this.grade = grade;
         this.section = section;
-        this.ay = ay;
+        this.academicYearId = ayId;
         this.shift = shift;
         this.hours = hours;
-        this.subjects = subjects;
+        this.subjectIds = subjects;
         this.subjTeachers = subjTeachers;
-        this.students = students;
+        this.studentIds = students;
     }
 
 }
