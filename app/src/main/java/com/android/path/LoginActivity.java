@@ -29,8 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString(getString(R.string.userIdSharedPref), "123");
         editor.commit();
 
-        new SetUpFirebaseData().data();
-
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }

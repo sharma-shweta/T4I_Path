@@ -5,15 +5,15 @@ import java.util.HashMap;
 
 public class SubjTeacher {
 
-    public Subject subject;
-    public Teacher teacher;
+    public String subjectId;
+    public String teacherId;
 
     public SubjTeacher() {
         // Default constructor required for calls to DataSnapshot.getValue(School.class)
     }
 
-    public SubjTeacher(Subject s, Teacher t) {
-        this.subject = s;
-        this.teacher = t;
+    public SubjTeacher(String subjectId, String teacherId) {
+        this.subjectId = subjectId;
+        this.teacherId = teacherId;
     }
 }
