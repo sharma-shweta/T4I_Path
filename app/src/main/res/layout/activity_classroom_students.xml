@@ -6,19 +6,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/class_students_bg">
     <TextView
-        android:text="Students in your Class                            "
+        android:text="Students in your Class"
         android:id="@+id/intro2"
         style="@style/MediumWhiteCenter"
         android:layout_marginTop="50dp"
         android:layout_alignParentTop="true"
-        android:gravity="center" />
+        android:paddingLeft="25dp"
+        android:gravity="left" />
     <ImageButton
         android:id="@+id/btnAddStudents"
         android:src="@drawable/add"
         style="@style/CenterTrnspBg"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
-        android:onClick=""/>
+        android:onClick="gotoAddStudent"/>
 
     <TextView
         android:text="Looks like your class is empty!\nGo ahead and add students."
