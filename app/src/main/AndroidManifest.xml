@@ -26,6 +26,7 @@
         <activity android:name=".SelectSubjectActivity" />
         <activity android:name=".ClassroomStudentsActivity" />
         <activity android:name=".SelectSchoolActivity"></activity>
+        <activity android:name=".AddStudentActivity" />
     </application>
 
 </manifest>
