@@ -14,6 +14,8 @@ public class SetUpFirebaseData {
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     public void data() {
+        //Clear all data
+        //mDatabase.child("path").removeValue();
 
         //Academic Years
         Calendar calendar = new GregorianCalendar(2015, 3, 1);
@@ -82,11 +84,11 @@ public class SetUpFirebaseData {
     }
 
     public void pushToFB(String path, String id, Object o) {
-        mDatabase.child("path").child(path).child(id).setValue(o);
+        mDatabase.child("path-app").child(path).child(id).setValue(o);
     }
 
     public void pushReverseLocationToFB(School s) {
-        mDatabase.child("path").child("school-locations").child(s.country).child(s.state).
+        mDatabase.child("path-app").child("school-locations").child(s.country).child(s.state).
                 child(s.city).child(s.name).setValue(s.name);
     }
 

@@ -39,6 +39,10 @@
     <string name="DatabaseUrl">https://c4c-t4i.firebaseio.com</string>
 
     <!--Shared Preference-->
-    <string name="userIdSharedPref" />
+    <string name="SHAREDPREF">SHAREDPREF1</string>
+    <string name="userIdSharedPref">userIdSharedPref</string>
+    <string name="userCountry">userCountry</string>
+    <string name="userState">userState</string>
+    <string name="userCity">userCity</string>
 
 </resources>

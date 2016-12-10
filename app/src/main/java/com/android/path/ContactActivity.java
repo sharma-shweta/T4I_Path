@@ -14,15 +14,9 @@ public class ContactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact);
     }
 
-    /** Called when the user clicks the login button */
-    public void gotoSelClass(View view) {
-        // Do something in response to button
-        Log.d("GenderActivity", "Starting SelectClassroomActivity");
-        // do google authentication
-
-//        mDatabase.child("shwt-test").child("android-test").setValue("shweta");
-
-        Intent intent = new Intent(this, SelectClassroomActivity.class);
+    public void gotoSelSch(View view) {
+        Log.d("ContactActivity", "Starting SelectSchoolActivity");
+        Intent intent = new Intent(this, SelectSchoolActivity.class);
         startActivity(intent);
     }
 }
