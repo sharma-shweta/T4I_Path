@@ -40,5 +40,7 @@
 
     <!--Shared Preference-->
     <string name="userIdSharedPref" />
+    <string name="maleRadio">Male</string>
+    <string name="femaleRadio">Female</string>
 
 </resources>

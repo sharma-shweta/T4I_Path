@@ -2,58 +2,84 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/gender_bg">
+    android:background="@drawable/gender_bg"
+    android:orientation="vertical">
+
     <TextView
-        android:text="Tell us more about yourself"
         android:id="@+id/genderTitle"
         style="@style/MediumWhiteCenter"
         android:layout_width="wrap_content"
         android:layout_marginTop="70dp"
         android:gravity="center"
-        android:paddingLeft="30dp" />
+        android:paddingLeft="30dp"
+        android:text="Tell us more about yourself" />
+
     <LinearLayout
+        android:id="@+id/gender_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_centerInParent="true"
-        android:paddingTop="50dp"
         android:layout_marginTop="200dp"
-        android:id="@+id/gender_title">
+        android:orientation="horizontal"
+        android:paddingTop="50dp">
+
         <TextView
-            android:text="Gender"
+            android:id="@+id/teacher_gender_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="bottom"
-            android:id="@+id/teacher_gender_text"
-            android:textAppearance="@android:style/TextAppearance.Material.Display1"
             android:paddingLeft="25dp"
-            android:paddingTop="15dp" />
+            android:paddingTop="15dp"
+            android:text="Gender"
+            android:textAppearance="@android:style/TextAppearance.Material.Display1" />
+
         <ImageView
-            android:src="@drawable/gender_icon"
+            android:id="@+id/teacher_gender_imgview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:id="@+id/teacher_gender_imgview"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/gender_icon" />
     </LinearLayout>
-    <Spinner
-        android:entries="@array/gender_dropdown_array"
-        android:minWidth="100px"
-        android:minHeight="25px"
-        android:layout_below="@id/gender_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacher_gender_dropdown_spinner"
-        android:paddingLeft="10dp"
-        android:contentDescription="Choose Gender"
-        android:paddingTop="20dp" />
+
     <ImageButton
         android:id="@+id/genderNext"
-        android:src="@drawable/next_button"
         style="@style/CenterTrnspBg"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
-        android:onClick="gotoDOB"/>
+        android:onClick="gotoDOB"
+        android:src="@drawable/next_button" />
+
+    <RadioGroup
+        android:id="@+id/maleFemaleRadioGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"
+        android:weightSum="1"
+        android:layout_below="@+id/gender_title"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/genderNext"
+        android:scrollbarSize="@dimen/activity_vertical_margin">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:checked="false"
+            android:text="Male"
+            android:textSize="25dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="@android:dimen/app_icon_size" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="0.13"
+            android:checked="false"
+            android:text="Female"
+            android:textSize="25dp"
+            android:layout_marginLeft="@android:dimen/app_icon_size" />
+    </RadioGroup>
 </RelativeLayout>
