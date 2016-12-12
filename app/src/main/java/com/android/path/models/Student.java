@@ -26,4 +26,20 @@ public class Student {
         this.yoi = yoi;
         this.classroomIds = classroomIds;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRollNum() {
+        return rollNum;
+    }
+
+    public void setRollNum(int rollNum) {
+        this.rollNum = rollNum;
+    }
 }

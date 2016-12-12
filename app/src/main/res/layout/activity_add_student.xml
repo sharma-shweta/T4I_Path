@@ -1,83 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/rectangle_bg">
-    <TextView
-        android:text="Add a Student"
-        android:id="@+id/heading"
-        style="@style/MediumWhiteCenter"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="25dp"
-        android:gravity="left" />
+    android:orientation="vertical">
 
-    <EditText
-        android:layout_width="wrap_content"
-        style="@style/SmallWhiteCenter"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:gravity="left"
-        android:paddingLeft="25dp"
-        android:id="@+id/rollNo"
-        android:hint="Roll No."
-        android:layout_marginTop="10dp"
-        android:textColorHint="#CCCCCC"
-        android:textColorLink="@android:color/white"
-        android:layout_below="@+id/heading"
-        android:layout_alignParentStart="true" />
-
-
-    <Spinner
-        android:id="@+id/Gender"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        style="@style/SmallWhiteCenter"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:entries="@array/gender_dropdown_array"
-        android:layout_alignBaseline="@+id/genderText"
-        android:layout_alignBottom="@+id/genderText"
-        android:layout_toEndOf="@+id/rollNo"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="22dp"
-        android:animateLayoutChanges="false"
-        android:animationCache="false"
-        android:clipToPadding="false" />
+        android:background="@drawable/rectangle_bg"
+        android:orientation="vertical">
 
-    <TextView
-        android:text="Gender"
-        android:id="@+id/genderText"
-        style="@style/SmallWhiteCenter"
-        android:paddingLeft="25dp"
-        android:gravity="left"
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/rollNo"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="18dp" />
+        <TextView
+            android:id="@+id/heading"
+            style="@style/MediumWhiteCenter"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="50dp"
+            android:gravity="left"
+            android:paddingLeft="25dp"
+            android:text="Add a Student" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        style="@style/SmallWhiteCenter"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:gravity="left"
-        android:paddingLeft="25dp"
-        android:id="@+id/Name"
-        android:hint="Name"
-        android:textColorHint="#CCCCCC"
-        android:textColorLink="@android:color/white"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        <EditText
+            android:id="@+id/rollNo"
+            style="@style/SmallWhiteCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/heading"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:hint="Roll No."
+            android:inputType="number"
+            android:paddingLeft="25dp"
+            android:textColorHint="#CCCCCC"
+            android:textColorLink="@android:color/white" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/done_copy"
-        android:id="@+id/imageView"
-        android:layout_alignBottom="@+id/Gender"
-        android:layout_alignEnd="@+id/genderText" />
 
-</RelativeLayout>
+        <Spinner
+            android:id="@+id/Gender"
+            style="@style/SmallWhiteCenter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/genderText"
+            android:layout_alignBottom="@+id/genderText"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="22dp"
+            android:layout_toEndOf="@+id/rollNo"
+            android:animateLayoutChanges="false"
+            android:animationCache="false"
+            android:clipToPadding="false"
+            android:entries="@array/gender_dropdown_array"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/genderText"
+            style="@style/SmallWhiteCenter"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/rollNo"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="22dp"
+            android:gravity="left"
+            android:paddingLeft="25dp"
+            android:text="Gender" />
+
+        <EditText
+            android:id="@+id/Name"
+            style="@style/SmallWhiteCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="left"
+            android:hint="Name"
+            android:inputType="number"
+            android:paddingLeft="25dp"
+            android:textColorHint="#CCCCCC"
+            android:textColorLink="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/Gender"
+            android:layout_alignEnd="@+id/genderText"
+            app:srcCompat="@drawable/done_copy" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ListView
+            android:id="@+id/studentList"
+            android:layout_alignParentEnd="true"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" />
+    </RelativeLayout>
+</LinearLayout>

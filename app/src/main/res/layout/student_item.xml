@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip"
+    android:orientation="horizontal">
+
+    <!-- Student Name -->
+    <TextView
+        android:id="@+id/leftstudent"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textStyle="bold"
+        android:ellipsize="marquee"
+        />
+
+    <!-- Student Name Value-->
+    <TextView
+        android:id="@+id/rightstudent"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ellipsize="marquee"
+        />
+
+    <!-- RollNo -->
+    <TextView
+        android:id="@+id/leftrollno"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textStyle="bold"
+        android:ellipsize="marquee"
+        />
+
+    <!-- Roll No Value-->
+    <TextView
+        android:id="@+id/rightrollno"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ellipsize="marquee"
+        />
+</LinearLayout>

@@ -13,8 +13,8 @@ public class ClassroomStudentsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        boolean classHasStudents = hasStudents();
         super.onCreate(savedInstanceState);
+        boolean classHasStudents = hasStudents();
         setContentView(R.layout.activity_classroom_students);
         if(classHasStudents){
             Button view_students = (Button)findViewById(R.id.btnViewClassroomStudents);
@@ -25,10 +25,8 @@ public class ClassroomStudentsActivity extends AppCompatActivity {
             String message = "We have found "+ getNoOfStudents() + "students in your class";
             classroom_msg.setText(message);
         }
-        //super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_classroom_students);
-
     }
+
     public void gotoAddStudent(View view) {
         // Do something in response to button
         Log.d("AddStudentActivity", "Starting AddStudentActivity");
