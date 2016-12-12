@@ -34,6 +34,8 @@
     <string name="maleRadio">Male</string>
     <string name="femaleRadio">Female</string>
 
+    <string name="loading">Loading...</string>
+
     <!-- Firebase C4C T4I App Setings -->
     <string name="ApplicationName">c4c-t4i</string>
     <string name="ServerClientId">338211353991-urcc5h7gfd5qoppndv23a2vkqb5f6m1e.apps.googleusercontent.com</string>
@@ -44,8 +46,10 @@
     <!--Shared Preference-->
     <string name="SHAREDPREF">SHAREDPREF</string>
     <string name="userIdSharedPref">userIdSharedPref</string>
+    <string name="userName">username</string>
     <string name="userCountry">userCountry</string>
     <string name="userState">userState</string>
     <string name="userCity">userCity</string>
+    <string name="userSchool">userSchool</string>
 
 </resources>

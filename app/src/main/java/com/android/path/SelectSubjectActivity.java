@@ -14,14 +14,8 @@ public class SelectSubjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_subject);
     }
 
-    /** Called when the user clicks the login button */
     public void gotoClsStud(View view) {
-        // Do something in response to button
         Log.d("SelectSubjectActivity", "Starting SelectSubjectActivity");
-        // do google authentication
-
-//        mDatabase.child("shwt-test").child("android-test").setValue("shweta");
-
         Intent intent = new Intent(this, ClassroomStudentsActivity.class);
         startActivity(intent);
     }

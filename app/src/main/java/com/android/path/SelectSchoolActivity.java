@@ -25,7 +25,7 @@ public class SelectSchoolActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private ArrayList<String> schools = new ArrayList<String>();
 
-    private String selectionCnty = "";
+    private String selectionSchool = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,15 @@ public class SelectSchoolActivity extends AppCompatActivity {
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(SelectSchoolActivity.this, android.R.layout.select_dialog_item, schools);
                 schoolName.setThreshold(1);
                 schoolName.setAdapter(adapter1);
+                schoolName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+                        selectionSchool = (String) parent.getItemAtPosition(position);
+                        SharedPreferences sharedPref = SelectSchoolActivity.this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString(getString(R.string.userSchool), selectionSchool);
+                        editor.commit();
+                    }
+                });
             }
 
             @Override

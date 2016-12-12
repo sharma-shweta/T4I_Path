@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="pick a date"
-        android:id="@+id/button2"
+        android:id="@+id/dob_btn"
         android:layout_marginStart="23dp"
         android:layout_marginTop="13dp"
         android:layout_below="@+id/dob_title"

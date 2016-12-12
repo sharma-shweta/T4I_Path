@@ -3,6 +3,7 @@ package com.android.path.models;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -17,8 +18,13 @@ public class SetUpFirebaseData {
         //Clear all data
         //mDatabase.child("path").removeValue();
 
+        //DOB
+        Calendar calendar = new GregorianCalendar(1993, 10, 01);
+        Date dob = calendar.getTime();
+        SimpleDateFormat dobFmt = new SimpleDateFormat("dd-MM-yyyy");
+
         //Academic Years
-        Calendar calendar = new GregorianCalendar(2015, 3, 1);
+        calendar = new GregorianCalendar(2015, 3, 1);
         Date start = calendar.getTime();
         calendar = new GregorianCalendar(2016, 2, 29);
         Date end = calendar.getTime();
@@ -35,7 +41,8 @@ public class SetUpFirebaseData {
         subjectIds.add("mathematics");
 
         //Teachers
-        Teacher t1 = new Teacher("Prof X", "123456", "profX@school.org", "mockGoogleId", subjectIds);
+        Teacher t1 = new Teacher("Prof X", "123456", "profX@school.org", "mockGoogleId", Gender.FEMALE,
+                dobFmt.format(dob), subjectIds);
         pushToFB("teachers", "Prof-X", t1);
 
         //Teacher-Subject map

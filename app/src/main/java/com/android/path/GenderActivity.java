@@ -1,31 +1,49 @@
 package com.android.path;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.android.path.models.Gender;
+import com.android.path.utils.FirebaseAPI;
 
 
 public class GenderActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         setContentView(R.layout.activity_gender);
     }
 
-    /** Called when the user clicks the login button */
     public void gotoDOB(View view) {
-        // Do something in response to button
         Log.d("GenderActivity", "Starting DOBActivity");
-        // do google authentication
+
+        RadioGroup rg = (RadioGroup) findViewById(R.id.maleFemaleRadioGroup);
+        int index = rg.indexOfChild(findViewById(rg.getCheckedRadioButtonId()));
+
+        RadioButton r = (RadioButton) rg.getChildAt(index);
+        String selectedGenderStr = r.getText().toString();
+        Gender selectedGender = Gender.MALE;
+
+        if (selectedGenderStr.equals("Female")) {
+            selectedGender = Gender.FEMALE;
+        }
+        else{
+            selectedGender = Gender.MALE;
+        }
+
+        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
+        String userId = sharedPref.getString(getString(R.string.userIdSharedPref), "");
+        if (userId != null) {
+            FirebaseAPI.getInstance().updateTeacher(userId, "gender", selectedGender);
+        }
 
         Intent intent = new Intent(this, DOBActivity.class);
         startActivity(intent);

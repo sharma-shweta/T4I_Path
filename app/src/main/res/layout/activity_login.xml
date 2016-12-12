@@ -21,6 +21,5 @@
         android:src="@drawable/login_button"
         style="@style/CenterTrnspBg"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:onClick="loginToGoogle"/>
+        android:layout_marginBottom="100dp"/>
 </RelativeLayout>
