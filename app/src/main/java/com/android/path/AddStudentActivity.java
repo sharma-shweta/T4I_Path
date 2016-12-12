@@ -1,17 +1,13 @@
 package com.android.path;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.path.models.Gender;
@@ -20,12 +16,9 @@ import com.android.path.utils.FirebaseAPI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import static java.security.AccessController.getContext;
 
 public class AddStudentActivity extends AppCompatActivity {
 
@@ -75,8 +68,8 @@ public class AddStudentActivity extends AppCompatActivity {
             genFlag = true;
         }
 
-        if (rollNum.getText() == null || name.getText() == null || gender.getSelectedItem() == null) {
-            String message = "DONT BE THE DUMB!!";
+        if (rollNum.getText() == null || name.getText() == null || genFlag == false) {
+            String message = "Fill all fields!";
             Toast.makeText(AddStudentActivity.this, message, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -87,6 +80,14 @@ public class AddStudentActivity extends AppCompatActivity {
         //reset values
         rollNum.setText("");
         name.setText("");
+        gender.setSelection(0);
 
+        String message = "Student Added";
+        Toast.makeText(AddStudentActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void gotoExplorePath(View view) {
+        Intent intent = new Intent(this, ExplorePath.class);
+        startActivity(intent);
     }
 }
