@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectClassroomActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
         <activity android:name=".DOBActivity" />
         <activity android:name=".ContactActivity" />
         <activity android:name=".LocationActivity" />
-        <!--<activity android:name=".SelectClassroomActivity" />-->
+        <activity android:name=".SelectClassroomActivity" />
         <activity android:name=".SelectSubjectActivity" />
         <activity android:name=".ClassroomStudentsActivity" />
         <activity android:name=".SelectSchoolActivity" />

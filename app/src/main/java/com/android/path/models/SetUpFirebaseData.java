@@ -10,7 +10,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class SetUpFirebaseData {
+import static com.android.path.R.id.gender;
+
+
+class SetUpFirebaseData {
 
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -88,6 +91,14 @@ public class SetUpFirebaseData {
         pushReverseLocationToFB(s3);
         pushToFB("schools", s4.name, s4);
         pushReverseLocationToFB(s4);
+
+        //Students
+        Student stud1 = new Student("Ram", 1, Gender.MALE, dobFmt.format(dob), 5, new ArrayList<String>());
+        pushToFB("students", new Integer(stud1.rollNum).toString(), stud1);
+        Student stud2 = new Student("Tony", 2, Gender.MALE, dobFmt.format(dob), 5, new ArrayList<String>());
+        pushToFB("students", new Integer(stud2.rollNum).toString(), stud2);
+        Student stud3 = new Student("Barbie", 2, Gender.FEMALE, dobFmt.format(dob), 5, new ArrayList<String>());
+        pushToFB("students", new Integer(stud3.rollNum).toString(), stud3);
     }
 
     public void pushToFB(String path, String id, Object o) {
@@ -98,6 +109,6 @@ public class SetUpFirebaseData {
         mDatabase.child("path-app").child("school-locations").child(s.country).child(s.state).
                 child(s.city).child(s.name).setValue(s.name);
     }
-
 }
+
 

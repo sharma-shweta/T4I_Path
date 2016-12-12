@@ -3,6 +3,7 @@ package com.android.path.utils;
 import android.util.Log;
 
 import com.android.path.R;
+import com.android.path.models.Student;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -42,4 +43,12 @@ public class FirebaseAPI {
         teacherRef.child(tchId).updateChildren(teacherUpdates);
     }
 
+    public void addStudent(Student s){
+        if (s == null) {
+            Log.v(TAG, "addStudent - Student not correctly set!");
+            return;
+        }
+        DatabaseReference studentRef = mDatabase.child("students");
+        studentRef.child(new Integer(s.rollNum).toString()).setValue(s);
+    }
 }

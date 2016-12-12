@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.android.path.models.Gender;
-import com.android.path.models.SetUpFirebaseData;
 import com.android.path.models.Teacher;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
