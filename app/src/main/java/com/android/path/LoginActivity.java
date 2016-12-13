@@ -204,7 +204,15 @@ public class LoginActivity extends BaseActivity implements
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.loginbutton) {
-            signIn();
+            SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(getString(R.string.userIdSharedPref), "shweta8448");
+            editor.putString(getString(R.string.userName), "Shweta");
+            editor.commit();
+
+            Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
+            startActivity(intent);
+//            signIn();
         } else {
             Log.v(TAG, "OnClick:" + v.getId());
         }

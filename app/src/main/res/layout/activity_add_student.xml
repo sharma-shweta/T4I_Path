@@ -25,7 +25,7 @@
             android:text="Add a Student" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <EditText
@@ -33,22 +33,23 @@
                 android:layout_marginTop="22dp"
                 style="@style/SmallWhiteCenter"
                 android:windowSoftInputMode="stateHidden"
-                android:layout_width="wrap_content"
                 android:layout_alignParentStart="true"
                 android:hint="Roll No."
                 android:inputType="number"
-                android:paddingLeft="25dp"
+                android:layout_marginLeft="45dp"
                 android:textColorHint="#CCCCCC"
                 android:layout_weight="1"
-                android:textColorLink="@android:color/white" />
+                android:textColorLink="@android:color/white"
+                android:layout_width="70dp"/>
+
             <EditText
                 android:id="@+id/studName"
                 android:layout_marginTop="22dp"
                 style="@style/SmallWhiteCenter"
-                android:layout_width="wrap_content"
                 android:hint="Name"
-                android:paddingLeft="25dp"
+                android:layout_marginLeft="25dp"
                 android:textColorHint="#CCCCCC"
+                android:layout_width="200dp"
                 android:layout_weight="4"
                 android:textColorLink="@android:color/white" />
         </LinearLayout>
@@ -59,26 +60,28 @@
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/genderText"
-                style="@style/SmallWhiteCenter"
+                style="@style/GreyContentTitle"
+                android:textSize="16dp"
                 android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="22dp"
                 android:paddingLeft="25dp"
                 android:text="Gender"
                 android:layout_weight="1"/>
-
             <Spinner
                 android:id="@+id/studGender"
                 style="@style/SmallWhiteCenter"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_marginTop="22dp"
+                android:layout_marginLeft="70dp"
                 android:entries="@array/gender_dropdown_array"
                 android:layout_weight="3"/>
-
             <ImageButton
                 android:src="@drawable/done_copy"
                 android:layout_marginTop="23dp"
                 style="@style/CenterTrnspBg"
                 android:onClick="addStudent"
+                android:layout_marginLeft="14dp"
                 android:layout_toRightOf="@id/studGender"
                 android:layout_weight="1"/>
         </LinearLayout>
@@ -107,7 +110,7 @@
             android:textSize="17dp"
             android:gravity="right"
             android:textStyle="bold"
-            android:text="35"
+            android:text="7"
             android:layout_weight="1"
             android:paddingBottom="10dp"/>
     </LinearLayout>

@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 import static com.android.path.R.id.gender;
 
 
-class SetUpFirebaseData {
+public class SetUpFirebaseData {
 
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 

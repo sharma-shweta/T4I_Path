@@ -19,28 +19,27 @@
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="120dp"
+        android:paddingTop="150dp"
         android:paddingBottom="20dp"
         android:layout_centerInParent="true">
         <TextView
             android:text="Select the subjects that you'll be teaching"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            style="@style/GreyContentTitle"
+            android:gravity="left"
             android:layout_weight="2"
             android:id="@+id/teacher_contact_text"
-            android:textAppearance="@android:style/TextAppearance.Material.Title"
-            android:textColor="#ff6b5d5d"
-            android:paddingTop="20dp" />
+            android:paddingTop="27dp" />
         <CheckBox
             android:text="English"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/GreyContentTitle"
+            android:gravity="left"
             android:id="@+id/english_checkbox"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="27dp" />
         <CheckBox
             android:text="Maths"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/GreyContentTitle"
+            android:gravity="left"
+            android:layout_marginTop="17dp"
             android:id="@+id/math_checkbox" />
     </LinearLayout>
     <ImageButton

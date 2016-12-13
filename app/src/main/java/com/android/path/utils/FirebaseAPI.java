@@ -28,6 +28,10 @@ public class FirebaseAPI {
     }
 
     public void updateTeacher(String tchId, String teacherAttr, Object newValue){
+        if (tchId.equals("") || tchId == null) {
+            Log.v(TAG, "updateTeacher - tchId not correctly set!");
+            return;
+        }
         if (teacherAttr.equals("") || teacherAttr == null) {
             Log.v(TAG, "updateTeacher - teacherAttr not correctly set!");
             return;

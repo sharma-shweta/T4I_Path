@@ -3,6 +3,7 @@ package com.android.path;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
+import android.util.Log;
 
 import com.android.path.models.Classroom;
 

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.path.models.SetUpFirebaseData;
+
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -29,7 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void gotoChooseLang(View view) {
         Log.d("Welcome", "Starting Choose Language Activity");
-//        new SetUpFirebaseData().data();
+        new SetUpFirebaseData().data();
         Intent intent = new Intent(this, AppLanguageActivity.class);
         startActivity(intent);
     }
