@@ -23,13 +23,15 @@
 
     <TextView
         android:text="Looks like your class is empty!\nGo ahead and add students."
+        style="@style/GreyContentTitle"
+        android:layout_marginTop="280dp"
         android:layout_width="wrap_content"
+        android:gravity="left"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/intro2"
         android:layout_alignParentStart="true"
         android:layout_marginStart="22dp"
-        android:id="@+id/addStudentMsg"
-        />
+        android:id="@+id/addStudentMsg"/>
 
     <Button
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -45,5 +47,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="83dp"
         android:visibility="invisible"
-        />
+        android:onClick="gotoAddStudent"/>
 </RelativeLayout>

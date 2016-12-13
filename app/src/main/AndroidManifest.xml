@@ -27,7 +27,10 @@
         <activity android:name=".ClassroomStudentsActivity" />
         <activity android:name=".SelectSchoolActivity" />
         <activity android:name=".AddStudentActivity" />
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".ClassroomData" />
+        <activity android:name=".ClsDataAdaptor" />
+        <activity android:name=".ExplorePath"></activity>
     </application>
 
 </manifest>

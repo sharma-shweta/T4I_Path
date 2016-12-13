@@ -16,22 +16,19 @@ public class ClassroomStudentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         boolean classHasStudents = hasStudents();
         setContentView(R.layout.activity_classroom_students);
-        if(classHasStudents){
+        if(!classHasStudents){
             Button view_students = (Button)findViewById(R.id.btnViewClassroomStudents);
             view_students.setVisibility(View.VISIBLE);
             ImageButton add_students = (ImageButton)findViewById(R.id.btnAddStudents);
             add_students.setVisibility(View.INVISIBLE);
             TextView classroom_msg = (TextView) findViewById(R.id.addStudentMsg);
-            String message = "We have found "+ getNoOfStudents() + "students in your class";
+            String message = "We have found "+ getNoOfStudents() + " students in your class.";
             classroom_msg.setText(message);
         }
     }
 
     public void gotoAddStudent(View view) {
-        // Do something in response to button
-        Log.d("AddStudentActivity", "Starting AddStudentActivity");
-        // do google authentication
-
+        Log.d("ClassroomStudentsAct", "Starting AddStudentActivity");
         Intent intent = new Intent(this, AddStudentActivity.class);
         startActivity(intent);
     }
@@ -39,6 +36,6 @@ public class ClassroomStudentsActivity extends AppCompatActivity {
         return false;
     }
     private int getNoOfStudents(){
-        return 23;
+        return 7;
     }
 }
