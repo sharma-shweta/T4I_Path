@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.path.models.Gender;
@@ -17,6 +18,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -42,6 +45,10 @@ public class AddStudentActivity extends AppCompatActivity {
                 listview = (ListView) findViewById(R.id.studentList);
                 ArrayAdapter<Student> adapter = new StudentArrayAdapter(AddStudentActivity.this, R.layout.student_item, students);
                 listview.setAdapter(adapter);
+
+                TextView numOfStuds = (TextView) findViewById(R.id.numberOfStudents);
+                numOfStuds.setText(new Integer(students.size()).toString());
+
             }
 
             @Override

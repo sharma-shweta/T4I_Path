@@ -110,7 +110,7 @@ public class SelectClassroomActivity extends AppCompatActivity implements Adapte
 
         SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
         String userSchool = sharedPref.getString(getString(R.string.userSchool), "");
-        mDatabase.child("ACJC").child("classIds").addListenerForSingleValueEvent(classList);
+        mDatabase.child(userSchool).child("classIds").addListenerForSingleValueEvent(classList);
     }
 
     @Override

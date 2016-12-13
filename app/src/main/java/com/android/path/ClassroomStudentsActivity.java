@@ -36,6 +36,6 @@ public class ClassroomStudentsActivity extends AppCompatActivity {
         return false;
     }
     private int getNoOfStudents(){
-        return 7;
+        return 5;
     }
 }
