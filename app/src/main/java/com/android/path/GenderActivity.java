@@ -20,6 +20,8 @@ public class GenderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gender);
+        RadioGroup rg = (RadioGroup) findViewById(R.id.maleFemaleRadioGroup);
+        rg.setSelected(true);
     }
 
     public void gotoDOB(View view) {

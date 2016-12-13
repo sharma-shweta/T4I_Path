@@ -51,5 +51,8 @@
     <string name="userState">userState</string>
     <string name="userCity">userCity</string>
     <string name="userSchool">userSchool</string>
+    <string name="gradeSharefPref">gradeSharefPref</string>
+    <string name="sectionSharedPref">sectionSharedPref</string>
+    <string name="classSharedPref">classSharedPref</string>
 
 </resources>
