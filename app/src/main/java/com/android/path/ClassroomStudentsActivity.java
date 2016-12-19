@@ -1,28 +1,75 @@
 package com.android.path;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
+import com.squareup.otto.ThreadEnforcer;
 
 public class ClassroomStudentsActivity extends AppCompatActivity {
+
+    private DatabaseReference mDatabase;
+    public static Bus bus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boolean classHasStudents = hasStudents();
         setContentView(R.layout.activity_classroom_students);
-        if(!classHasStudents){
-            Button view_students = (Button)findViewById(R.id.btnViewClassroomStudents);
+        bus = new Bus(ThreadEnforcer.ANY);
+        bus.register(this);
+        populateNoOfStudent();
+    }
+
+    private void populateNoOfStudent() {
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("path-app").child("students");
+        ValueEventListener studentList = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Integer count = 0;
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+                    ++count;
+                }
+                bus.post(count);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("ClassRoomStudentsAct", "locationList:onCancelled", databaseError.toException());
+            }
+        };
+        mDatabase.addListenerForSingleValueEvent(studentList);
+    }
+
+    @Subscribe
+    public void nextMethod(Integer noOfStudents) {
+        boolean classHasStudents = noOfStudents != 0;
+        Log.d("ClassroomStudentsAct", "Received noOfStudents=" + noOfStudents);
+        if (classHasStudents) {
+            Button view_students = (Button) findViewById(R.id.btnViewClassroomStudents);
             view_students.setVisibility(View.VISIBLE);
-            ImageButton add_students = (ImageButton)findViewById(R.id.btnAddStudents);
+            ImageButton add_students = (ImageButton) findViewById(R.id.btnAddStudents);
             add_students.setVisibility(View.INVISIBLE);
             TextView classroom_msg = (TextView) findViewById(R.id.addStudentMsg);
-            String message = "We have found "+ getNoOfStudents() + " students in your class.";
+            String message = "We have found " + noOfStudents + " students in your class.";
             classroom_msg.setText(message);
         }
     }
@@ -31,11 +78,5 @@ public class ClassroomStudentsActivity extends AppCompatActivity {
         Log.d("ClassroomStudentsAct", "Starting AddStudentActivity");
         Intent intent = new Intent(this, AddStudentActivity.class);
         startActivity(intent);
-    }
-    private boolean hasStudents(){
-        return false;
-    }
-    private int getNoOfStudents(){
-        return 5;
     }
 }

@@ -12,18 +12,20 @@ public class Student {
     public Gender gender;
     public String dobStr;
     public int yoi;
+    public String currentClass;
     public ArrayList<String> classroomIds;
 
     public Student() {
         // Default constructor required for calls to DataSnapshot.getValue(Student.class)
     }
 
-    public Student(String name, int rollNum, Gender gender, String dobStr, int yoi, ArrayList<String> classroomIds) {
+    public Student(String name, int rollNum, Gender gender, String dobStr, int yoi, String currClass, ArrayList<String> classroomIds) {
         this.name = name;
         this.rollNum = rollNum;
         this.gender = gender;
         this.dobStr = dobStr;
         this.yoi = yoi;
+        this.currentClass = currClass;
         this.classroomIds = classroomIds;
     }
 
@@ -37,9 +39,5 @@ public class Student {
 
     public int getRollNum() {
         return rollNum;
-    }
-
-    public void setRollNum(int rollNum) {
-        this.rollNum = rollNum;
     }
 }

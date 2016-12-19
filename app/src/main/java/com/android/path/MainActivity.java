@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.android.path.models.Classroom;
+import com.android.path.models.SetUpFirebaseData;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        new SetUpFirebaseData().data();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }

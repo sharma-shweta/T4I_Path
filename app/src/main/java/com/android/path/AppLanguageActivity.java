@@ -21,8 +21,6 @@ public class AppLanguageActivity extends AppCompatActivity {
     public void gotoLocation(View view) {
         // Do something in response to button
         Log.d("AppLanguageActivity", "Starting LocationActivity");
-        // do google authentication
-
         Intent intent = new Intent(this, LocationActivity.class);
         startActivity(intent);
     }

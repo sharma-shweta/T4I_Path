@@ -93,11 +93,13 @@ public class SetUpFirebaseData {
         pushReverseLocationToFB(s4);
 
         //Students
-        Student stud1 = new Student("Ram", 1, Gender.MALE, dobFmt.format(dob), 5, new ArrayList<String>());
+        ArrayList<String> classList = new ArrayList<String>();
+        classList.add(c4_id);
+        Student stud1 = new Student("Ram", 1, Gender.MALE, dobFmt.format(dob), 5, c4_id, classList);
         pushToFB("students", new Integer(stud1.rollNum).toString(), stud1);
-        Student stud2 = new Student("Tony", 2, Gender.MALE, dobFmt.format(dob), 5, new ArrayList<String>());
+        Student stud2 = new Student("Tony", 2, Gender.MALE, dobFmt.format(dob), 5, c4_id, classList);
         pushToFB("students", new Integer(stud2.rollNum).toString(), stud2);
-        Student stud3 = new Student("Barbie", 2, Gender.FEMALE, dobFmt.format(dob), 5, new ArrayList<String>());
+        Student stud3 = new Student("Barbie", 2, Gender.FEMALE, dobFmt.format(dob), 5, c4_id, classList);
         pushToFB("students", new Integer(stud3.rollNum).toString(), stud3);
     }
 

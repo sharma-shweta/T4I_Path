@@ -43,6 +43,7 @@ public class LocationActivity extends AppCompatActivity {
         ValueEventListener locationList = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i(TAG, "locationList:onDataChange");
                 for (DataSnapshot cntyDS : dataSnapshot.getChildren()) {
                     countries.add(cntyDS.getKey());
                     ArrayList<String> stateList = new ArrayList<String>();

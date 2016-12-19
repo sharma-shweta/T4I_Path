@@ -55,4 +55,13 @@ public class FirebaseAPI {
         DatabaseReference studentRef = mDatabase.child("students");
         studentRef.child(new Integer(s.rollNum).toString()).setValue(s);
     }
+
+    public void updateSubTeacher(String classId, String index, String teacherName){
+        if (classId == null) {
+            Log.v(TAG, "updateSubTeacher - classId=" + classId + " ");
+            return;
+        }
+        DatabaseReference subTeacher = mDatabase.child("classes").child(classId).child("subjTeachers");
+        subTeacher.child(index).child("teacherId").setValue(teacherName);
+    }
 }

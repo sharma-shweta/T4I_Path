@@ -1,9 +1,14 @@
 package com.android.path;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -28,6 +33,8 @@ public class AddStudentActivity extends AppCompatActivity {
     private DatabaseReference mDatabase = FirebaseAPI.getInstance().getPathDBRef().child("students");
 
     ListView listview;
+    ArrayAdapter<Student> adapter;
+    ArrayList<Student> students;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +44,30 @@ public class AddStudentActivity extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                ArrayList<Student> students = new ArrayList<Student>();
+                students = new ArrayList<Student>();
                 for (DataSnapshot std : snapshot.getChildren()) {
                     Student student = std.getValue(Student.class);
                     students.add(student);
                 }
                 listview = (ListView) findViewById(R.id.studentList);
-                ArrayAdapter<Student> adapter = new StudentArrayAdapter(AddStudentActivity.this, R.layout.student_item, students);
+                adapter = new StudentArrayAdapter(AddStudentActivity.this, R.layout.student_item, students);
                 listview.setAdapter(adapter);
 
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                        AlertDialog.Builder adb=new AlertDialog.Builder(AddStudentActivity.this);
+                        adb.setTitle("Delete?");
+                        adb.setMessage("Are you sure you want to delete - Roll No: " + students.get(position).getRollNum() + " (" + students.get(position).getName() + ")");
+                        final int positionToRemove = position;
+                        adb.setNegativeButton("Cancel", null);
+                        adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                students.remove(positionToRemove);
+                                AddStudentActivity.this.adapter.notifyDataSetChanged();
+                            }});
+                        adb.show();
+                    }
+                });
                 TextView numOfStuds = (TextView) findViewById(R.id.numberOfStudents);
                 numOfStuds.setText(new Integer(students.size()).toString());
 
@@ -80,8 +102,10 @@ public class AddStudentActivity extends AppCompatActivity {
             Toast.makeText(AddStudentActivity.this, message, Toast.LENGTH_SHORT).show();
             return;
         }
+        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
+        String classId = sharedPref.getString(getString(R.string.classSharedPref), "");
         Student student = new Student(name.getText().toString(), Integer.parseInt(rollNum.getText().toString()),
-                genderStr, "dob", -1, new ArrayList<String>());
+                genderStr, "dob", -1, classId, new ArrayList<String>());
         FirebaseAPI.getInstance().addStudent(student);
 
         //reset values

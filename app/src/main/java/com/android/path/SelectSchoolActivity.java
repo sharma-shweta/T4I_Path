@@ -66,9 +66,9 @@ public class SelectSchoolActivity extends AppCompatActivity {
                 Log.w("SelectSchoolActivity", "locationList:onCancelled", databaseError.toException());
             }
         };
-
+        System.out.println("start .. On data change my my");
         mDatabase.addListenerForSingleValueEvent(schoolList);
-
+        System.out.println("end .. On data change my my");
     }
 
     public void gotoSelClass(View view) {

@@ -121,6 +121,7 @@ public class SelectClassroomActivity extends AppCompatActivity implements Adapte
         Spinner spinner = (Spinner) findViewById(R.id.spSection);
         spinner.setOnItemSelectedListener(SelectClassroomActivity.this);
         ArrayList<Pair<String, String>> classSection = gradeClassSection.get(item);
+        Log.d("SelectClassroomActivity", "classSection size " + classSection);
         if (classSection == null)
             return;
         List<String> sections = new ArrayList<>();
@@ -148,9 +149,11 @@ public class SelectClassroomActivity extends AppCompatActivity implements Adapte
         editor.putString(getString(R.string.gradeSharefPref), g);
         editor.putString(getString(R.string.sectionSharedPref), s);
         ArrayList<Pair<String, String>> classSection = gradeClassSection.get(g);
+        Log.d("SelectClassroomActivity", "grade=" + g + " section=" + s + " classSection=" + classSection);
         for (Pair<String, String> p : classSection)
             if (s == p.second) {
-                editor.putString(getString(R.string.sectionSharedPref), s);
+                Log.d("SelectClassroomActivity","putting class=" + p.first);
+                editor.putString(getString(R.string.classSharedPref), p.first);
                 break;
             }
         editor.commit();
