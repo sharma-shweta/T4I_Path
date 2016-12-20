@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.path.models.Student;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,8 +46,12 @@ public class ClassroomStudentsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Integer count = 0;
+                SharedPreferences sharedPref = ClassroomStudentsActivity.this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
+                String classId = sharedPref.getString(getString(R.string.classSharedPref), "");
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
-                    ++count;
+                    Student s = d.getValue(Student.class);
+                    if (s.currentClass != null && s.currentClass.equals(classId))
+                        ++count;
                 }
                 bus.post(count);
             }
