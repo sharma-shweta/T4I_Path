@@ -40,7 +40,7 @@ public class AddStudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
 
-        FirebaseAPI.getSchoolsDBRef().addValueEventListener(new ValueEventListener() {
+        FirebaseAPI.getStudentsDBRef().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.d("StudentsChanged", "student change triggered");

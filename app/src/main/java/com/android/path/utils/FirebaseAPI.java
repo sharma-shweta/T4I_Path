@@ -96,7 +96,7 @@ public class FirebaseAPI {
             Log.v(TAG, "addStudent - Student not correctly set!");
             return;
         }
-        DatabaseReference studentRef = mDatabase.child("students");
+        DatabaseReference studentRef = mDatabase.child(students);
         studentRef.child(new Integer(s.rollNum).toString()).setValue(s);
     }
 
