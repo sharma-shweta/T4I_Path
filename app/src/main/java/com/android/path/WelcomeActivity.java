@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.path.models.SetUpFirebaseData;
+import com.android.path.utils.SharedPreferencesAPI;
 
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -18,20 +19,14 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-        String user = sharedPref.getString(getString(R.string.userName), "");
+        String username = SharedPreferencesAPI.get(this, getString(R.string.userName), "");
+        String helloUser = String.format("Hello %s!", username.split(" ")[0]);
         TextView hello = (TextView) findViewById(R.id.helloUser);
-        if (user != null){
-            hello.setText("Hello " + user + " !");
-        }
-        else{
-            hello.setText("Hello!");
-        }
+        hello.setText(helloUser);
     }
 
     public void gotoChooseLang(View view) {
         Log.d("Welcome", "Starting Choose Language Activity");
-        new SetUpFirebaseData().data();
         Intent intent = new Intent(this, AppLanguageActivity.class);
         startActivity(intent);
     }

@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.path.models.Student;
+import com.android.path.utils.FirebaseAPI;
+import com.android.path.utils.SharedPreferencesAPI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +30,6 @@ import com.squareup.otto.ThreadEnforcer;
 
 public class ClassroomStudentsActivity extends AppCompatActivity {
 
-    private DatabaseReference mDatabase;
     public static Bus bus;
 
     @Override
@@ -41,13 +42,11 @@ public class ClassroomStudentsActivity extends AppCompatActivity {
     }
 
     private void populateNoOfStudent() {
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("path-app").child("students");
         ValueEventListener studentList = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Integer count = 0;
-                SharedPreferences sharedPref = ClassroomStudentsActivity.this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-                String classId = sharedPref.getString(getString(R.string.classSharedPref), "");
+                String classId = SharedPreferencesAPI.get(ClassroomStudentsActivity.this, getString(R.string.classSharedPref), "");
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
                     Student s = d.getValue(Student.class);
                     if (s.currentClass != null && s.currentClass.equals(classId))
@@ -61,7 +60,7 @@ public class ClassroomStudentsActivity extends AppCompatActivity {
                 Log.w("ClassRoomStudentsAct", "locationList:onCancelled", databaseError.toException());
             }
         };
-        mDatabase.addListenerForSingleValueEvent(studentList);
+        FirebaseAPI.getStudentsDBRef().addListenerForSingleValueEvent(studentList);
     }
 
     @Subscribe

@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/engTestTitle"
-                android:text="ENGLISH - TEST A"
+                android:text="ENGLISH - READING"
                 android:textColor="#6e7b8b"
                 android:layout_marginTop="12dp"
                 android:layout_alignParentTop="true"
@@ -99,7 +99,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MATH - TEST B"
+                android:text="MATH - ALGEBRA"
                 android:textColor="#6e7b8b"
                 android:layout_marginTop="12dp"
                 android:layout_alignParentTop="true"
@@ -175,7 +175,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ENGLISH - TEST B"
+                android:text="ENGLISH - WRITING"
                 android:textColor="#6e7b8b"
                 android:layout_marginTop="12dp"
                 android:layout_alignParentTop="true"

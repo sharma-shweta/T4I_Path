@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.android.path.utils.FirebaseAPI;
+import com.android.path.utils.SharedPreferencesAPI;
 
 public class ContactActivity extends AppCompatActivity {
 
@@ -25,11 +26,8 @@ public class ContactActivity extends AppCompatActivity {
         EditText contact = (EditText)findViewById(R.id.teacher_contact_number);
         if (contact.getText() != null) {
             String phNum = contact.getText().toString();
-            SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-            String userId = sharedPref.getString(getString(R.string.userIdSharedPref), "");
-            FirebaseAPI.getInstance().updateTeacher(userId, "phNum", phNum);
+            FirebaseAPI.updateTeacher(SharedPreferencesAPI.getLoggedInUserID(this), FirebaseAPI.userPhNum, phNum);
         }
-
         Intent intent = new Intent(this, SelectSchoolActivity.class);
         startActivity(intent);
     }

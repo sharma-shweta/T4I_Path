@@ -28,4 +28,14 @@ public class Teacher {
         this.dob = dob;
         this.subjectIds = subjectIds;
     }
+
+    public Teacher(String name, String email, String loginId, ArrayList<String> subjectIds) {
+        this.name = name;
+        this.phNum = "";
+        this.email = email;
+        this.loginId = loginId;
+        this.gender = Gender.UNKNOWN;
+        this.dob = "";
+        this.subjectIds = subjectIds;
+    }
 }

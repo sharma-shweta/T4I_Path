@@ -20,18 +20,15 @@ import android.widget.Toast;
 import com.android.path.models.Gender;
 import com.android.path.models.Student;
 import com.android.path.utils.FirebaseAPI;
+import com.android.path.utils.SharedPreferencesAPI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class AddStudentActivity extends AppCompatActivity {
-
-    private DatabaseReference mDatabase = FirebaseAPI.getInstance().getPathDBRef().child("students");
 
     ListView listview;
     ArrayAdapter<Student> adapter;
@@ -42,23 +39,26 @@ public class AddStudentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
-        mDatabase.addValueEventListener(new ValueEventListener() {
+
+        FirebaseAPI.getSchoolsDBRef().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.d("StudentsChanged", "student change triggered");
                 students = new ArrayList<>();
                 allstudents = new ArrayList<>();
-                SharedPreferences sharedPref = AddStudentActivity.this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-                String classId = sharedPref.getString(getString(R.string.classSharedPref), "");
+                String classId = SharedPreferencesAPI.get(AddStudentActivity.this, getString(R.string.classSharedPref), "");
+
                 for (DataSnapshot std : snapshot.getChildren()) {
                     Student student = std.getValue(Student.class);
                     allstudents.add(student);
                     if (classId != null && student != null && student.currentClass != null && student.currentClass.equals(classId))
                         students.add(student);
                 }
+
                 listview = (ListView) findViewById(R.id.studentList);
                 adapter = new StudentArrayAdapter(AddStudentActivity.this, R.layout.student_item, students);
                 listview.setAdapter(adapter);
+
                 listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> a, View v, final int position, long id) {
                         Student st = students.get(position);
@@ -70,7 +70,7 @@ public class AddStudentActivity extends AppCompatActivity {
                         final Student s = st;
                         adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                FirebaseAPI.getInstance().addStudent(s);
+                                FirebaseAPI.addStudent(s);
                                 students.remove(position);
                                 TextView numOfStuds = (TextView) findViewById(R.id.numberOfStudents);
                                 numOfStuds.setText(new Integer(students.size()).toString());
@@ -97,6 +97,7 @@ public class AddStudentActivity extends AppCompatActivity {
         EditText rollNum = (EditText) findViewById(R.id.studRollNo);
         EditText name = (EditText) findViewById(R.id.studName);
         Spinner gender = (Spinner) findViewById(R.id.studGender);
+
         Gender genderStr = Gender.MALE;
         boolean genFlag = false;
         if (gender.getSelectedItem().toString().equals("Female")) {
@@ -111,8 +112,8 @@ public class AddStudentActivity extends AppCompatActivity {
             Toast.makeText(AddStudentActivity.this, message, Toast.LENGTH_SHORT).show();
             return;
         }
-        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-        String classId = sharedPref.getString(getString(R.string.classSharedPref), "");
+
+        String classId = SharedPreferencesAPI.get(this, getString(R.string.classSharedPref), "");
         Student existingStudent = null;
         boolean studentInList = false;
         for (Student s : students) {
@@ -148,7 +149,7 @@ public class AddStudentActivity extends AppCompatActivity {
             existingStudent = new Student(name.getText().toString(), Integer.parseInt(rollNum.getText().toString()),
                     genderStr, "dob", -1, classId, classRoomIds);
         }
-        FirebaseAPI.getInstance().addStudent(existingStudent);
+        FirebaseAPI.addStudent(existingStudent);
 
         //reset values
         rollNum.setText("");

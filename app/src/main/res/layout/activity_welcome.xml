@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/welcome">
     <TextView
-        android:text="Hey (User)!"
+        android:text="Hey Shweta!"
         android:id="@+id/helloUser"
         style="@style/LargeWhiteCenter"
         android:layout_alignParentTop="true"

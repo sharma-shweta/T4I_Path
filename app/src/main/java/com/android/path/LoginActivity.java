@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.android.path.models.Gender;
 import com.android.path.models.Teacher;
+import com.android.path.utils.FirebaseAPI;
+import com.android.path.utils.SharedPreferencesAPI;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -47,12 +49,11 @@ public class LoginActivity extends BaseActivity implements
     private FirebaseAuth.AuthStateListener mAuthListener;
     private GoogleApiClient mGoogleApiClient;
 
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("path-app").child("teachers");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         findViewById(R.id.loginbutton).setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -72,28 +73,18 @@ public class LoginActivity extends BaseActivity implements
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    // 2 Defaults - phone number and gender
-                    Teacher t = new Teacher(user.getDisplayName(), "xxx", user.getEmail(), user.getUid(), Gender.MALE,
-                                            "xxx", new ArrayList<String>());
-                    String username = t.email.split("@")[0].replace(".", "");
-
-                    mDatabase.child(username).setValue(t);
-
-                    SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString(getString(R.string.userIdSharedPref), username);
-                    editor.putString(getString(R.string.userName), user.getDisplayName().split(" ")[0]);
-                    editor.commit();
-
+                    //TODO - login vs sign up
+                    Log.d(TAG, "onAuthStateChanged: User Signed In: " + user.getUid());
+                    Teacher t = new Teacher(user.getDisplayName(), user.getEmail(), user.getUid(), new ArrayList<String>());
+                    FirebaseAPI.addUser(t);
+                    SharedPreferencesAPI.setLoggedInUserID(LoginActivity.this, t.loginId);
+                    SharedPreferencesAPI.put(LoginActivity.this, getString(R.string.userName), t.name);
                     Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    Log.d(TAG, "onAuthStateChanged: User Signed Out");
                 }
-                updateUI(user);
             }
         };
     }
@@ -115,7 +106,6 @@ public class LoginActivity extends BaseActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -132,7 +122,6 @@ public class LoginActivity extends BaseActivity implements
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -204,15 +193,7 @@ public class LoginActivity extends BaseActivity implements
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.loginbutton) {
-            SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString(getString(R.string.userIdSharedPref), "shweta8448");
-            editor.putString(getString(R.string.userName), "Shweta");
-            editor.commit();
-
-            Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
-            startActivity(intent);
-//            signIn();
+            signIn();
         } else {
             Log.v(TAG, "OnClick:" + v.getId());
         }
