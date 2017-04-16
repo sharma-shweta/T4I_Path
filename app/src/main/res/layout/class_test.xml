@@ -179,6 +179,7 @@
                 android:textColor="#6e7b8b"
                 android:layout_marginTop="12dp"
                 android:layout_alignParentTop="true"
+                android:padding="16dp"
                 android:textSize="23sp"/>
             <TextView
                 android:layout_width="match_parent"
