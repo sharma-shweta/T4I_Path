@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 
 import com.android.path.models.Gender;
 import com.android.path.utils.FirebaseAPI;
+import com.android.path.utils.SharedPreferencesAPI;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -69,14 +70,7 @@ public class DOBActivity extends AppCompatActivity {
 
     public void gotoContact(View view) {
         Log.d("DOBActivity", "Starting ContactActivity");
-
-        if (selDate != null) {
-            SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-            String userId = sharedPref.getString(getString(R.string.userIdSharedPref), "");
-            FirebaseAPI.getInstance().updateTeacher(userId, "dob", selDate);
-        }
-        else {
-        }
+        FirebaseAPI.updateTeacher(SharedPreferencesAPI.getLoggedInUserID(this), FirebaseAPI.userDOB, selDate);
         Intent intent = new Intent(this, ContactActivity.class);
         startActivity(intent);
     }

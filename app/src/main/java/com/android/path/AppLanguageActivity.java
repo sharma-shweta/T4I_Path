@@ -14,12 +14,10 @@ public class AppLanguageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_language);
         ListView view = (ListView)findViewById(R.id.lang_list);
-        view.setSelection(0);
+        //TODO set app locale
     }
 
-    /** Called when the user clicks the login button */
     public void gotoLocation(View view) {
-        // Do something in response to button
         Log.d("AppLanguageActivity", "Starting LocationActivity");
         Intent intent = new Intent(this, LocationActivity.class);
         startActivity(intent);

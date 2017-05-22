@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 
 import com.android.path.models.Gender;
 import com.android.path.utils.FirebaseAPI;
+import com.android.path.utils.SharedPreferencesAPI;
 
 
 public class GenderActivity extends AppCompatActivity {
@@ -20,8 +21,6 @@ public class GenderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gender);
-        RadioGroup rg = (RadioGroup) findViewById(R.id.maleFemaleRadioGroup);
-        rg.setSelected(true);
     }
 
     public void gotoDOB(View view) {
@@ -30,21 +29,12 @@ public class GenderActivity extends AppCompatActivity {
         RadioGroup rg = (RadioGroup) findViewById(R.id.maleFemaleRadioGroup);
         int index = rg.indexOfChild(findViewById(rg.getCheckedRadioButtonId()));
 
-        RadioButton r = (RadioButton) rg.getChildAt(index);
-        String selectedGenderStr = r.getText().toString();
-        Gender selectedGender = Gender.MALE;
-
-        if (selectedGenderStr.equals("Female")) {
-            selectedGender = Gender.FEMALE;
-        }
-        else{
-            selectedGender = Gender.MALE;
-        }
-
-        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-        String userId = sharedPref.getString(getString(R.string.userIdSharedPref), "");
-        if (userId != null) {
-            FirebaseAPI.getInstance().updateTeacher(userId, "gender", selectedGender);
+        RadioButton rb = (RadioButton) rg.getChildAt(index);
+        if (rb != null) {
+            String selectedGenderStr = rb.getText().toString();
+            Gender selectedGender = Gender.UNKNOWN;
+            selectedGender = (selectedGenderStr.equals("Female")) ? Gender.FEMALE :Gender.MALE;
+            FirebaseAPI.updateTeacher(SharedPreferencesAPI.getLoggedInUserID(this), FirebaseAPI.userGender, selectedGender);
         }
 
         Intent intent = new Intent(this, DOBActivity.class);

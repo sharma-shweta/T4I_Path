@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import com.android.path.utils.FirebaseAPI;
+import com.android.path.utils.SharedPreferencesAPI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,41 +26,25 @@ public class SelectSchoolActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private ArrayList<String> schools = new ArrayList<String>();
-
-    private String selectionSchool = "";
+    private ArrayAdapter<String> schoolAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_school);
 
-        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-        String cnty = sharedPref.getString(getString(R.string.userCountry), "");
-        String state = sharedPref.getString(getString(R.string.userState), "");
-        String city = sharedPref.getString(getString(R.string.userCity), "");
+        String cnty = SharedPreferencesAPI.get(this, getString(R.string.userCountry), "");
+        String state = SharedPreferencesAPI.get(this, getString(R.string.userState), "");
+        String city = SharedPreferencesAPI.get(this, getString(R.string.userCity), "");
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("path-app").child("school-locations").child(cnty).child(state).child(city);
-
-        ValueEventListener schoolList = new ValueEventListener() {
+        final ValueEventListener schoolList = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot scDS : dataSnapshot.getChildren()) {
                     schools.add(scDS.getKey());
                 }
-
-                AutoCompleteTextView schoolName = (AutoCompleteTextView) findViewById(R.id.schoolName);
-                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(SelectSchoolActivity.this, android.R.layout.select_dialog_item, schools);
-                schoolName.setThreshold(1);
-                schoolName.setAdapter(adapter1);
-                schoolName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-                        selectionSchool = (String) parent.getItemAtPosition(position);
-                        SharedPreferences sharedPref = SelectSchoolActivity.this.getSharedPreferences(getString(R.string.SHAREDPREF), Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString(getString(R.string.userSchool), selectionSchool);
-                        editor.commit();
-                    }
-                });
+                schoolAdapter.addAll(schools);
+                schoolAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -66,9 +52,17 @@ public class SelectSchoolActivity extends AppCompatActivity {
                 Log.w("SelectSchoolActivity", "locationList:onCancelled", databaseError.toException());
             }
         };
-        System.out.println("start .. On data change my my");
-        mDatabase.addListenerForSingleValueEvent(schoolList);
-        System.out.println("end .. On data change my my");
+        FirebaseAPI.getSchoolsInLocationDBRef(cnty, state, city).addListenerForSingleValueEvent(schoolList);
+
+        AutoCompleteTextView schoolName = (AutoCompleteTextView) findViewById(R.id.schoolName);
+        schoolAdapter = new ArrayAdapter<String>(SelectSchoolActivity.this, android.R.layout.select_dialog_item, new ArrayList<String>());
+        schoolName.setAdapter(schoolAdapter);
+        schoolName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+                String selectionSchool = (String) parent.getItemAtPosition(position);
+                SharedPreferencesAPI.put(SelectSchoolActivity.this, getString(R.string.userSchool), selectionSchool);
+            }
+        });
     }
 
     public void gotoSelClass(View view) {
