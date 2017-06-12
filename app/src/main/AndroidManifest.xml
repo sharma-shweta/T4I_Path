@@ -30,6 +30,7 @@
         <activity android:name=".BaseActivity" />
         <activity android:name=".ClassroomData" />
         <activity android:name=".ExplorePath" />
+        <activity android:name=".JourneyActivity" />
     </application>
 
 </manifest>
